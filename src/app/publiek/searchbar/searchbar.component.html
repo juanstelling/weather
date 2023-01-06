@@ -1,0 +1,10 @@
+<div class="flex justify-center">
+  <form class="w-fit" #form="ngForm" (submit)="onSubmit()">
+    <input
+      type="text"
+      name="city"
+      [(ngModel)]="city"
+      placeholder="Search city"
+    />
+  </form>
+</div>

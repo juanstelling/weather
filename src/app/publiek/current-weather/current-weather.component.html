@@ -1,0 +1,31 @@
+<div class="widget-container">
+  <div class="img-widget">
+    <img class="background-img" [src]="imageUrl" alt="the night with stars" />
+    <div class="weather-data">
+      <div class="grid grid-cols-12 gap-y-4">
+        <div class="col-span-12">
+          <h2 class="text-white">
+            {{ weatherLocation.name }}
+            <span class="material-symbols-outlined text-white"> near_me </span>
+          </h2>
+          <h4 class="pb-2 text-white">{{ weatherLocation.country }}</h4>
+        </div>
+        <div class="col-span-12">
+          <h1 class="text-white">
+            {{ weatherCurrent.temp_c | number : "1.0-0" }}ºC
+          </h1>
+        </div>
+        <div class="col-span-12 flex items-center">
+          <img
+            class="w-[50px] pr-2"
+            src="{{ weatherCurrent.condition.icon }}"
+            alt="icon of weather condition"
+          />
+          <h4 class="font-semibold text-white">
+            {{ weatherCurrent.condition.text }}
+          </h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

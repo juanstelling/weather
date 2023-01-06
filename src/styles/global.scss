@@ -1,0 +1,44 @@
+* {
+  @apply m-0 m-0 box-border;
+}
+
+html {
+  @apply h-full;
+}
+
+body {
+  @apply h-[100vh] w-full bg-primary-600 font-sans text-base font-bold text-white dark:bg-primary-800;
+}
+
+.widget-container {
+  @apply h-full w-full rounded-2xl bg-primary-500 drop-shadow-lg dark:bg-primary-700;
+}
+
+.container {
+  @apply m-auto py-10 px-16;
+}
+
+.img-widget {
+  @apply relative h-full w-full  overflow-hidden rounded-2xl;
+}
+
+.background-img {
+  @apply absolute top-0 left-0 h-full w-full;
+}
+
+.weather-data {
+  @apply relative z-10 h-full w-full bg-[#0000004d] p-9;
+}
+
+input {
+  @apply rounded-2xl  bg-primary-400 p-4 text-center outline-none  dark:bg-primary-700 dark:text-[#ededed];
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  @apply h-1.5 w-1.5 overflow-y-scroll;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-[#accbd3] dark:bg-[#252C48];
+}

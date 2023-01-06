@@ -1,0 +1,21 @@
+<div class="widget-container w-full overflow-x-auto p-2">
+  <div class="grid grid-flow-col grid-rows-3 p-2 px-2">
+    <ng-container *ngFor="let hour of temphours; let i = index">
+      <ng-container *ngIf="i >= currentTime">
+        <div class="row-span-1 px-1">
+          <p class="pt-4 text-center">{{ hour.time | date : "HH" }}</p>
+        </div>
+        <div class="row-span-1 px-1">
+          <img
+            class="m-auto w-[50px]"
+            src="{{ hour.condition.icon }}"
+            alt="icon of weather condition"
+          />
+        </div>
+        <div class="row-span-1 px-1">
+          <p class="pt-2 text-center">{{ hour.temp_c }}</p>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>

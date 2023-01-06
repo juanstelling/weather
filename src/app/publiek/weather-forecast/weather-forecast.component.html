@@ -1,0 +1,20 @@
+<div class="widget-container p-2">
+  <ng-container *ngFor="let forecastday of forecast.forecastday; let i = index">
+    <div class="grid grid-cols-12 p-2">
+      <div class="col-span-4">{{ forecastday.date | date : "EEEE" }}</div>
+      <div class="col-span-4">
+        <img
+          class="w-[40px] pr-2"
+          src="{{ forecastday.day.condition.icon }}"
+          alt="icon of weather condition"
+        />
+      </div>
+      <div class="col-span-4">
+        {{ forecastday.day.mintemp_c }}ºC - {{ forecastday.day.maxtemp_c }}ºC
+      </div>
+    </div>
+    <ng-container *ngIf="i < 2">
+      <hr />
+    </ng-container>
+  </ng-container>
+</div>

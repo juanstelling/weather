@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="grid grid-cols-12 gap-5 pb-8">
+    <div class="col-span-12">
+      <!-- <button class="float-right text-fuchsia-600" (click)="toggleDarkTheme()">To darkmode</button> -->
+      <mat-slide-toggle class="float-right" (change)="toggleDarkTheme($event)">
+        Darkmode {{ darkmodeStatus }}
+      </mat-slide-toggle>
+    </div>
+    <div class="col-span-12">
+      <app-searchbar (cityName)="onSubmit($event)"></app-searchbar>
+    </div>
+  </div>
+  <ng-container *ngIf="weather$ | async as weather">
+    <div class="grid grid-flow-row grid-cols-4 gap-4">
+      <div class="col-span-4 md:col-span-2 md:row-span-2">
+        <app-current-weather
+          [weatherLocation]="weather.location"
+          [weatherCurrent]="weather.current"
+        ></app-current-weather>
+      </div>
+      <div class="col-span-4 md:col-span-2">
+        <app-astronomy
+          [astro]="weather.forecast.forecastday[0].astro"
+        ></app-astronomy>
+      </div>
+      <div class="col-span-4 md:col-span-2">
+        <app-astronomy
+          [astro]="weather.forecast.forecastday[0].astro"
+        ></app-astronomy>
+      </div>
+      <div class="col-span-4">
+        <app-temp-hours
+          [temphours]="weather.forecast.forecastday[0].hour"
+        ></app-temp-hours>
+      </div>
+      <div class="col-span-4">
+        <app-weather-forecast
+          [forecast]="weather.forecast"
+        ></app-weather-forecast>
+      </div>
+    </div>
+  </ng-container>
+</div>

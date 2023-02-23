@@ -1,3 +1,7 @@
+* {
+  @apply font-sans text-base font-bold text-white
+}
+
 h1 {
   @apply text-6xl dark:text-white lg:text-5xl;
 }

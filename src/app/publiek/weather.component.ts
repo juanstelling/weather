@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Weather } from '../core/models/weather';
+import { Component, } from '@angular/core';
 import { WeatherService } from '../core/services/weather.service';
 import { DarkmodeService } from '../core/services/darkmode.service';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
@@ -9,26 +7,19 @@ import { MatSlideToggleChange } from '@angular/material/slide-toggle';
   selector: 'app-weather',
   templateUrl: './weather.component.html',
 })
-export class WeatherComponent implements OnInit {
-  city: string = 'Amsterdam';
-  weather$!: Observable<Weather>;
+export class WeatherComponent  {
   darkmodeStatus: string = 'on';
+  
+  weather$ = this.weatherService.weather$;
+  selectedCity$ = this.weatherService.selectedCityAction$;
 
   constructor(
     private weatherService: WeatherService,
     private darkmodeService: DarkmodeService
   ) {}
 
-  ngOnInit(): void {
-    this.weather$ = this.getWeatherData(this.city);
-  }
-
-  onSubmit(city: string): void {
-    this.weather$ = this.getWeatherData(city);
-  }
-
-  getWeatherData(city: string): Observable<Weather> {
-    return this.weatherService.getWeatherData(city);
+  onSelected(city: string): void {
+    this.weatherService.setSelectedCity(city);
   }
 
   toggleDarkTheme(checked: MatSlideToggleChange): void {

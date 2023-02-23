@@ -7,7 +7,7 @@ html {
 }
 
 body {
-  @apply h-[100vh] w-full bg-primary-600 font-sans text-base font-bold text-white dark:bg-primary-800;
+  @apply h-[100vh] w-full bg-primary-600  dark:bg-primary-800;
 }
 
 .widget-container {
@@ -32,6 +32,10 @@ body {
 
 input {
   @apply rounded-2xl  bg-primary-400 p-4 text-center outline-none  dark:bg-primary-700 dark:text-[#ededed];
+
+  &::placeholder {
+    @apply text-[#fff] opacity-60;
+  }
 }
 
 /* Scrollbar */
@@ -40,5 +44,5 @@ input {
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-[#accbd3] dark:bg-[#252C48];
+  @apply bg-primary-500 dark:bg-primary-400
 }

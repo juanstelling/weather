@@ -1,26 +1,35 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, shareReplay, switchMap, tap } from 'rxjs';
 import { Weather } from '../models/weather';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WeatherService {
-  url: string = 'https://weatherapi-com.p.rapidapi.com/forecast.json';
+  private weatherUrl: string = 'https://weatherapi-com.p.rapidapi.com/forecast.json';
+
+  private selectedCitySubject = new BehaviorSubject<string>('Amsterdam');
+  selectedCityAction$ = this.selectedCitySubject.asObservable();
+
+  weather$ = this.selectedCityAction$.pipe(
+    switchMap(city => {
+      let options = {
+        params: new HttpParams().set('q', city).set('days', 3),
+        headers: new HttpHeaders()
+          .set( 'X-RapidAPI-Key', environment.RAPID_KEY )
+          .set('X-RapidAPI-Host', environment.RAPID_HOST),
+      };
+      return this.http.get<Weather>(this.weatherUrl, options )
+    }),
+    shareReplay(1),
+    tap(data => console.log(data))
+  )
 
   constructor(private http: HttpClient) {}
 
-  getWeatherData(city: string): Observable<Weather> {
-    const options = {
-      params: new HttpParams().set('q', city).set('days', 3),
-      headers: new HttpHeaders()
-        .set(
-          'X-RapidAPI-Key',
-          'ab18d94951msh8c57dbe75bec34ap1035a6jsnc085f8cb9e3b'
-        )
-        .set('X-RapidAPI-Host', 'weatherapi-com.p.rapidapi.com'),
-    };
-    return this.http.get<Weather>(this.url, options);
+  setSelectedCity(city : string): void {
+    this.selectedCitySubject.next(city);
   }
 }

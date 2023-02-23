@@ -1,13 +1,12 @@
 <div class="container">
   <div class="grid grid-cols-12 gap-5 pb-8">
     <div class="col-span-12">
-      <!-- <button class="float-right text-fuchsia-600" (click)="toggleDarkTheme()">To darkmode</button> -->
       <mat-slide-toggle class="float-right" (change)="toggleDarkTheme($event)">
         Darkmode {{ darkmodeStatus }}
       </mat-slide-toggle>
     </div>
     <div class="col-span-12">
-      <app-searchbar (cityName)="onSubmit($event)"></app-searchbar>
+      <app-searchbar (cityName)="onSelected($event)"></app-searchbar>
     </div>
   </div>
   <ng-container *ngIf="weather$ | async as weather">

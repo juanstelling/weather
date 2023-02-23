@@ -1,6 +1,8 @@
 <div class="widget-container">
   <div class="img-widget">
-    <img class="background-img" [src]="imageUrl" alt="the night with stars" />
+    <ng-container *ngIf="imageUrl$ | async as imageUrl">
+      <img class="background-img" [src]="imageUrl" alt="the night with stars" />
+    </ng-container>
     <div class="weather-data">
       <div class="grid grid-cols-12 gap-y-4">
         <div class="col-span-12">

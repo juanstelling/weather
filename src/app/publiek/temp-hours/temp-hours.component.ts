@@ -1,11 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Hour } from 'src/app/core/models/weather';
 
 @Component({
   selector: 'app-temp-hours',
   templateUrl: './temp-hours.component.html',
 })
 export class TempHoursComponent implements OnInit {
-  @Input() temphours!: any;
+  @Input() temphours!: Hour[];
   currentTime!: number;
   now = new Date();
 

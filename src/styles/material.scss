@@ -5,3 +5,7 @@
 .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
   @apply bg-slate-600;
 }
+
+.mat-slide-toggle-content {
+  @apply font-sans;
+}
